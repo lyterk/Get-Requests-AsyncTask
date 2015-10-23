@@ -8,40 +8,35 @@
                 android:paddingBottom="@dimen/activity_vertical_margin"
                 tools:context=".MainActivity">
 
-    <TextView
-        android:text="@string/main_title"
-        android:textSize="24dp"
+
+    <Button
+        android:id="@+id/get_button"
+        android:onClick="onClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/main_title_tv"
-        android:layout_gravity="center"
+        android:text="@string/get_button"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/firstname_et"
-        android:layout_below="@+id/main_title_tv"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/lastname_et"
-        android:layout_below="@+id/firstname_et"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
-
     <Button
+        android:id="@+id/update_button"
+        android:onClick="onClick"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="buttonClick"
-        android:id="@+id/button"
-        android:text="Submit"
-        android:layout_below="@+id/lastname_et"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="31dp"/>
+        android:text="@string/update_button"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:id="@+id/site_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/get_button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
