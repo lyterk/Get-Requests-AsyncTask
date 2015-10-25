@@ -1,9 +1,7 @@
 package com.lyterkgmail.vanillasandbox;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -14,21 +12,15 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class GET extends AsyncTask<URL, String, String> {
+public class GetRequest extends AsyncTask<URL, String, String> {
 
     private static final String TAG = "getTask";
-    private Boolean connected = false;
     private String result;
     private HttpURLConnection mHttpURLConnection;
-    private Context ctx;
-    private SiteData mSiteData;
+    private ProcessListener mProcessListener;
 
-    public GET (Context ctx) {
-        this.ctx = ctx;
-    }
-
-    public SiteData getSiteData() {
-        return mSiteData;
+    public GetRequest(ProcessListener mProcessListener) {
+        this.mProcessListener = mProcessListener;
     }
 
     public URL urlCreate(String strUrl) throws IOException {
@@ -62,22 +54,8 @@ public class GET extends AsyncTask<URL, String, String> {
     }
 
     @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-        mSiteData = new SiteData(s);
-        Toast.makeText(ctx, "OnPostExecute success!", Toast.LENGTH_LONG).show();
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
+        mProcessListener.ProcessingDone(result);
     }
-
-/*  Fucking. Java.
-    private boolean isNetworkAvailable(Context ctx) { // This could be passed a context to take it out of Main.
-        ConnectivityManager conMgr =
-                    (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = conMgr.getActiveNetworkInfo();
-        if(conMgr.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected() ||
-                conMgr.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).isConnected()){
-            return true;
-        }
-        return false;
-    }
-    */
 }
